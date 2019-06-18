@@ -33,3 +33,18 @@ plt.show()
 from pandas.plotting import scatter_matrix
 scatter_matrix(dataset)
 plt.show()
+
+#%%
+import sqlite3
+
+db = sqlite3.connect('data/Chinook_Sqlite.sqlite')
+cursor = db.cursor()
+sql_query = 'SELECT * FROM Track T ' \
+            'JOIN Album A on T.AlbumId = A.AlbumId LIMIT 5'
+
+cursor.execute(sql_query)
+all_rows = cursor.fetchall()
+for r in all_rows:
+    print(str(r))
+
+db.close()
